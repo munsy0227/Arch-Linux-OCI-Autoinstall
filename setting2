@@ -1,6 +1,7 @@
 #!/bin/ash
 setup-sshd
 vi /etc/ssh/sshd_config
+rc-service sshd restart
 passwd root
 mkdir /media/setup
 cp -a /media/sda/* /media/setup
