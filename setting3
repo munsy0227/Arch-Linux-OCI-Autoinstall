@@ -15,7 +15,9 @@ LANG=ko_KR.UTF-8
 nano /etc/vconsole.conf
 nano /etc/hostname
 mkinitcpio -P
+chmod 777 /etc/sudoers
 nano /etc/sudoers
+chmod 440 /etc/sudoers
 systemctl enable sshd
 systemctl enable NetworkManager.service
 ufw enable
