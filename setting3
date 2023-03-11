@@ -4,6 +4,7 @@ pacman-key --populate archlinux
 mount /dev/sda1 /mnt
 pacstrap /mnt base linux-zen linux-zen-headers linux-firmware openssh amd-ucode intel-ucode vi nano sudo 
 genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
 ln -sf /usr/share/zoneinfo/Aisa/Seoul /etc/localtime
 hwclock --systohc
 nano /etc/locale.gen
