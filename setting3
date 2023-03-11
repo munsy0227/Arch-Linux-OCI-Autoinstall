@@ -3,7 +3,7 @@ pacman-key --init
 pacman-key --populate archlinux
 mount /dev/sda1 /mnt
 mount /dev/sda15 /mnt/boot
-pacstrap /mnt base linux-zen linux-zen-headers linux-firmware openssh amd-ucode intel-ucode vi nano sudo networkmanager
+pacstrap /mnt base linux-zen linux-zen-headers linux-firmware openssh amd-ucode intel-ucode vi nano sudo networkmanager ufw
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 ln -sf /usr/share/zoneinfo/Aisa/Seoul /etc/localtime
@@ -17,5 +17,7 @@ nano /etc/hostname
 mkinitcpio -P
 systemctl enable sshd
 systemctl enable NetworkManager.service
+ufw enable
+ufw allow 22/tcp
 echo 이제 나머지 작업을 하세요
 exit 0
