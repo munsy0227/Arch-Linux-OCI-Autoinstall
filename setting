@@ -1,0 +1,6 @@
+#!/bin/bash
+wget https://dl-cdn.alpinelinux.org/alpine/v3.13/releases/x86_64/alpine-virt-3.13.12-x86_64.iso
+dd if=alpine-virt-3.13.12-x86_64.iso of=/dev/sda
+sync
+echo 재부팅하시오 동지
+exit 0
