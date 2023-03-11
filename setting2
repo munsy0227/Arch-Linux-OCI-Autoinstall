@@ -1,0 +1,31 @@
+#!/bin/ash
+setup-sshd
+chmod 777 /etc/sudoers
+vi /etc/sudoers
+chmod 440 /etc/sudoers
+passwd root
+mkdir /media/setup
+cp -a /media/sda/* /media/setup
+mkdir /lib/setup
+cp -a /.modloop/* /lib/setup
+/etc/init.d/modloop stop
+umount /dev/sda
+mv /media/setup/* /media/sda/
+mv /lib/setup/* /.modloop/
+setup-apkrepos
+vi /etc/apk/repositories
+apk update
+apk add dosfstools e2fsprogs pacman arch-install-scripts aria2 parted
+fdisk /dev/sda
+mkfs.vfat /dev/sda15
+mkfs.ext4 /dev/sda1
+mount /dev/sda1 /mnt
+mkdir -p /mnt/boot/EFI
+mount /dev/sda15 /mnt/boot/EFI
+mkdir /mnt/tmp
+cd /mnt/tmp
+aria2c -x16 -s16 https://seoul.mirror.pkgbuild.com/iso/2023.03.01/archlinux-bootstrap-2023.03.01-x86_64.tar.gz
+tar xf archlinux-bootstrap-2023.03.01-x86_64.tar.gz
+vi root.x86_64/etc/pacman.d/mirrorlist
+echo 이제  arch-chroot root.x86_64/ 를 입력하여 나머지 작업을 하세요
+exit 0
