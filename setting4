@@ -1,0 +1,26 @@
+#!/bin/bash
+#arch-chroot /mnt
+ln -sf /usr/share/zoneinfo/Aisa/Seoul /etc/localtime
+hwclock --systohc
+nano /etc/locale.gen
+locale-gen
+nano /etc/locale.conf
+LANG=ko_KR.UTF-8
+nano /etc/vconsole.conf
+nano /etc/hostname
+mkinitcpio -P
+chmod 777 /etc/sudoers
+nano /etc/sudoers
+chmod 440 /etc/sudoers
+systemctl enable sshd
+systemctl enable NetworkManager.service
+ufw enable
+ufw allow 22/tcp
+bootctl install
+nano /boot/loader/loader.conf
+nano /boot/loader/entries/linux-zen.conf
+bootctl
+adduser munsy0227
+passwd munsy0227
+echo 이제 나머지 작업을 하세요
+exit 0
