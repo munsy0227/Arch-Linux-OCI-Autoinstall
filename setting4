@@ -20,7 +20,7 @@ bootctl install
 nano /boot/loader/loader.conf
 nano /boot/loader/entries/linux-zen.conf
 bootctl
-adduser munsy0227
+useradd munsy0227
 passwd munsy0227
 blkid
 echo 이제 나머지 작업을 하세요 nano /boot/loader/entries/linux-zen.conf
